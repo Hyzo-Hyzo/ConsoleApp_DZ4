@@ -51,9 +51,9 @@ namespace ConsoleApp_DZ4
                     ShowBoard();
 
                     Console.WriteLine($"Player {player} turn:");
-                    Console.Write("Enter row: ");
+                    Console.Write(" row: ");
                     int row = int.Parse(Console.ReadLine());
-                    Console.Write("Enter column: ");
+                    Console.Write(" column: ");
                     int column = int.Parse(Console.ReadLine());
 
                     if (ValidMove(row, column))
@@ -81,7 +81,7 @@ namespace ConsoleApp_DZ4
                     }
                     else
                     {
-                        Console.WriteLine("Error! Please try again!");
+                        Console.WriteLine("Error!");
                         Console.ReadKey();
                     }
                 }
