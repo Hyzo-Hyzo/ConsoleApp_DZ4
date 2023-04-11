@@ -1,10 +1,19 @@
-﻿namespace ConsoleApp_DZ4
+﻿using ConsoleApp_DZ4.TicTacToeMultiplayer;
+using ConsoleApp_DZ4.TicTacToeSingle;
+
+namespace ConsoleApp_DZ4
 {
     internal class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
-            Test2.num3_4();
+            //1-2
+            TicTacToeS ticTacToeS = new TicTacToeS();
+            ticTacToeS.Play();          
+            TicTacToeM ticTacToeM = new TicTacToeM();
+            ticTacToeM.Play();
+            //3-4
+            Test3_4.num3_4();
 
         }
     }

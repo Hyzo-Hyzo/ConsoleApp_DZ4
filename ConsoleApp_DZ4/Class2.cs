@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp_DZ4
 {
-    namespace TicTacToeSingle
+    namespace TicTacToeMultiplayer
     {
-        class TicTacToeS
+        class TicTacToeM
         {
             private char[,] board;
             private char player;
 
-            public TicTacToeS()
+            public TicTacToeM()
             {
                 board = new char[3, 3];
                 player = 'X';
@@ -50,61 +50,21 @@ namespace ConsoleApp_DZ4
                     Console.Clear();
                     ShowBoard();
 
-                    if (player == 'X')
+                    Console.WriteLine($"Player {player} turn:");
+                    Console.Write("Enter row: ");
+                    int row = int.Parse(Console.ReadLine());
+                    Console.Write("Enter column: ");
+                    int column = int.Parse(Console.ReadLine());
+
+                    if (ValidMove(row, column))
                     {
-                        Console.WriteLine($"Player {player} ");
-                        Console.Write("row: ");
-                        int row = int.Parse(Console.ReadLine());
-                        Console.Write("column: ");
-                        int column = int.Parse(Console.ReadLine());
-
-                        if (ValidMove(row, column))
-                        {
-                            Move(row, column);
-
-                            if (Win())
-                            {
-                                Console.Clear();
-                                ShowBoard();
-                                Console.WriteLine($"Player {player} win!");
-                                return;
-                            }
-                            else if (BoardFull())
-                            {
-                                Console.Clear();
-                                ShowBoard();
-                                Console.WriteLine("Draw!");
-                                return;
-                            }
-                            else
-                            {
-                                SwitchPlayer();
-                            }
-                        }
-                        else
-                        {
-                            Console.WriteLine("Error! ");
-                            Console.ReadKey();
-                        }
-                    }
-                    else
-                    {
-                        Console.WriteLine($"Computer ({player}) turn:");
-
-                        int row, column;
-                        do
-                        {
-                            row = r.Next(3);
-                            column = r.Next(3);
-                        } while (!ValidMove(row, column));
-
                         Move(row, column);
 
                         if (Win())
                         {
                             Console.Clear();
                             ShowBoard();
-                            Console.WriteLine($"Computer ({player}) win!");
+                            Console.WriteLine($"Player {player} win!");
                             return;
                         }
                         else if (BoardFull())
@@ -118,6 +78,11 @@ namespace ConsoleApp_DZ4
                         {
                             SwitchPlayer();
                         }
+                    }
+                    else
+                    {
+                        Console.WriteLine("Error! Please try again!");
+                        Console.ReadKey();
                     }
                 }
             }
@@ -137,6 +102,7 @@ namespace ConsoleApp_DZ4
                     return true;
                 }
             }
+
             private void Move(int row, int column)
             {
                 board[row, column] = player;
@@ -146,24 +112,26 @@ namespace ConsoleApp_DZ4
             {
                 for (int i = 0; i < 3; i++)
                 {
-                    if (board[i, 0] == board[i, 1] && board[i, 1] == board[i, 2] && board[i, 0] != '-')
+                    if (board[i, 0] == player && board[i, 1] == player && board[i, 2] == player)
                     {
                         return true;
                     }
                 }
-                for (int j = 0; j < 3; j++)
+
+                for (int i = 0; i < 3; i++)
                 {
-                    if (board[0, j] == board[1, j] && board[1, j] == board[2, j] && board[0, j] != '-')
+                    if (board[0, i] == player && board[1, i] == player && board[2, i] == player)
                     {
                         return true;
                     }
                 }
-                if (board[0, 0] == board[1, 1] && board[1, 1] == board[2, 2] && board[0, 0] != '-')
+
+                if (board[0, 0] == player && board[1, 1] == player && board[2, 2] == player)
                 {
                     return true;
                 }
 
-                if (board[0, 2] == board[1, 1] && board[1, 1] == board[2, 0] && board[0, 2] != '-')
+                if (board[0, 2] == player && board[1, 1] == player && board[2, 0] == player)
                 {
                     return true;
                 }
@@ -214,4 +182,5 @@ namespace ConsoleApp_DZ4
             }
         }
     }
+
 }

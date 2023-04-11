@@ -110,7 +110,7 @@ namespace ConsoleApp_DZ4
    
     }
 
-     public class Test2
+     public class Test3_4
     {
         public static void num3_4()
         {
